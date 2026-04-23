@@ -1,0 +1,15 @@
+:root {
+  --cor-fundo: #000000;
+  --cor-superficie: #0b0b0b;
+  --cor-superficie-2: #111111;
+  --cor-borda: #242424;
+  --cor-texto: #f5f5f5;
+  --cor-texto-suave: #b3b3b3;
+  --cor-destaque: #7dd3fc;
+  --cor-destaque-hover: #38bdf8;
+  --cor-sucesso: #34d399;
+  --cor-erro: #f87171;
+
+  --fonte-sans: system-ui, -apple-system, sans-serif;
+  --fonte-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+}

@@ -1,0 +1,37 @@
+<plan>
+  <task>
+    <name>Inicializar projeto Vite React</name>
+    <files>package.json, vite.config.js, index.html, src/main.jsx, src/App.jsx</files>
+    <action>Executar scaffold do Vite React + JS, adicionar dependências acordadas (zustand, lucide-react, dompurify, markdown-it), limpar boilerplate não utilizado.</action>
+    <verify>Servidor dev sobe. Dependências instalam sem conflito. App.jsx renderiza estado inicial limpo.</verify>
+  </task>
+  
+  <task>
+    <name>Criar estrutura de pastas e arquivos-base</name>
+    <files>src/components/, src/lib/, src/store/, src/styles/, src/constants/, src/hooks/</files>
+    <action>Criar hierarquia de pastas exata baseada no plano técnico V1, criando arquivos estruturais vazios ou exportações mínimas para o layout.</action>
+    <verify>Estrutura em disco bate 100% com Documento de Plano Técnico (Item 7).</verify>
+  </task>
+  
+  <task>
+    <name>Implementar tema AMOLED base</name>
+    <files>src/styles/base.css, src/styles/theme.css, src/styles/layout.css, src/main.jsx</files>
+    <action>Definir variáveis CSS globais (tokens de cor e tipografia), aplicar reset CSS focado em leitor, excluir CSS padrão do Vite (App.css/index.css).</action>
+    <verify>Página exibe fundo escuro (#000000) e superfície AMOLED (#0b0b0b) testáveis visualmente pelo App.jsx montado.</verify>
+  </task>
+</plan>
+
+<plan>
+  <task>
+    <name>Construir layout leitor-first</name>
+    <files>src/components/Layout.jsx, src/components/Header.jsx, src/components/EmptyState.jsx, src/App.jsx</files>
+    <action>Montar o shell da aplicação com Header fixo e um estado inicial (EmptyState) que comunique as 3 formas de entrada de conteúdo. O App.jsx orquestrará a exibição.</action>
+    <verify>Tela vazia renderiza o layout principal e o componente EmptyState, sem funcionalidade ainda.</verify>
+  </task>
+  <task>
+    <name>Construir modos de visualização</name>
+    <files>src/components/ViewSwitcher.jsx, src/components/EditorPane.jsx, src/components/PreviewPane.jsx, src/store/useDocumentoStore.js</files>
+    <action>Criar os componentes de painel (Editor e Preview) e o alternador de modo (ViewSwitcher). Adicionar `modoVisualizacao` na store Zustand para controlar a exibição.</action>
+    <verify>Alternar modo no ViewSwitcher atualiza o estado na store e exibe/oculta os painéis correspondentes (com conteúdo mockado).</verify>
+  </task>
+</plan>

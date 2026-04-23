@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  background-color: var(--cor-superficie-2);
+  border: 1px solid var(--cor-borda);
+  border-radius: 6px;
+  padding: 2px;
+  gap: 2px;
+}
+
+.botao {
+  background: transparent;
+  border: none;
+  color: var(--cor-texto-suave);
+  padding: 6px 10px;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.botao:hover {
+  color: var(--cor-texto);
+  background-color: var(--cor-superficie);
+}
+
+.botao.ativo {
+  color: var(--cor-destaque);
+  background-color: var(--cor-superficie);
+}
