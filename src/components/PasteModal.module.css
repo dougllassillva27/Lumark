@@ -1,0 +1,75 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal {
+  background-color: var(--cor-superficie);
+  border: 1px solid var(--cor-borda);
+  border-radius: 8px;
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  gap: 1rem;
+}
+
+.titulo {
+  font-size: 1.25rem;
+  color: var(--cor-texto);
+}
+
+.textarea {
+  width: 100%;
+  height: 300px;
+  background-color: var(--cor-superficie-2);
+  color: var(--cor-texto);
+  border: 1px solid var(--cor-borda);
+  border-radius: 4px;
+  padding: 1rem;
+  font-family: var(--fonte-mono);
+  resize: vertical;
+  outline: none;
+}
+
+.textarea:focus {
+  border-color: var(--cor-destaque);
+}
+
+.acoes {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+}
+
+.botaoCancelar {
+  background: transparent;
+  color: var(--cor-texto-suave);
+  border: 1px solid transparent;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+}
+
+.botaoCancelar:hover {
+  color: var(--cor-texto);
+  background-color: var(--cor-superficie-2);
+}
+
+.botaoConfirmar {
+  background-color: var(--cor-destaque);
+  color: #000;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+.botaoConfirmar:hover {
+  background-color: var(--cor-destaque-hover);
+}

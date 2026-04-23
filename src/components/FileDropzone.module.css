@@ -1,0 +1,35 @@
+.dropzone {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  height: 100%;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(11, 11, 11, 0.9);
+  border: 2px dashed var(--cor-destaque);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--cor-destaque);
+  font-size: 1.5rem;
+  border-radius: 8px;
+}
+
+.erro {
+  position: absolute;
+  top: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--cor-erro);
+  color: #000;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  z-index: 60;
+  font-weight: 600;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
