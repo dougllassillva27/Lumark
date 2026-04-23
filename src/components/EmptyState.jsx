@@ -1,4 +1,4 @@
-import { FileUp, ClipboardPaste, MousePointerSquare } from 'lucide-react';
+import { FileUp, ClipboardPaste, MousePointer2 } from 'lucide-react';
 import { useDocumentoStore } from '../store/useDocumentoStore';
 import styles from './EmptyState.module.css';
 
@@ -20,7 +20,7 @@ function EmptyState() {
             <span>Abrir arquivo</span>
           </div>
           <div className={styles.opcao} onClick={criarMock}>
-            <MousePointerSquare size={32} />
+            <MousePointer2 size={32} />
             <span>Arrastar e soltar</span>
           </div>
           <div className={styles.opcao} onClick={criarMock}>
