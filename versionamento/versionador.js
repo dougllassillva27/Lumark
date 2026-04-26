@@ -83,8 +83,8 @@ function processarConteudo(conteudo, caminhoArquivo) {
   });
 
   // Processa url() do CSS
-  novoConteudo = novoConteudo.replace(/url\((['"]?)(.*?)\1\)/gi, (match, aspas, url) => {
-    return `url(${aspas}${processarUrl(url, caminhoArquivo)}${aspas})`;
+  novoConteudo = novoConteudo.replace(/\b(url)\((['"]?)(.*?)\2\)/gi, (match, palavraUrl, aspas, url) => {
+    return `${palavraUrl}(${aspas}${processarUrl(url, caminhoArquivo)}${aspas})`;
   });
 
   // Processa srcset (imagens responsivas)
