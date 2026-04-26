@@ -38,8 +38,10 @@ function EmptyState() {
     <div className={styles.container}>
       {erro && <div className={styles.erro}>{erro}</div>}
       <div className={styles.conteudo}>
-        <h2 className={styles.titulo}>Comece a usar</h2>
-        <p className={styles.subtitulo}>Abra um arquivo, arraste e solte, ou cole seu conteúdo para começar.</p>
+        <h2 className={styles.titulo}>Leitor de Markdown e Texto</h2>
+        <p className={styles.subtitulo}>
+          Visualize arquivos .md e .txt instantaneamente. Processamento 100% local e seguro no seu navegador.
+        </p>
         <input type="file" accept=".md,.txt" ref={inputRef} style={{ display: 'none' }} onChange={onFileInput} />
         <div className={styles.opcoes}>
           <div className={styles.opcao} onClick={abrirArquivo}>
