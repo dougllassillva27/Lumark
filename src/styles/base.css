@@ -16,3 +16,22 @@ button {
   font-family: inherit;
   cursor: pointer;
 }
+
+/* Scrollbar personalizada AMOLED */
+::-webkit-scrollbar {
+  width: 2px;
+  height: 2px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--cor-borda);
+  border-radius: 2px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cor-texto-suave);
+}
