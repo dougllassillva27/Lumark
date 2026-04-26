@@ -3,8 +3,3 @@
   height: 100%;
   overflow-y: auto;
 }
-
-.container h1 {
-  margin-bottom: 1rem;
-  color: var(--cor-destaque);
-}
