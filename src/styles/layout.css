@@ -25,3 +25,12 @@
 .workspace.split > * {
   width: 50%;
 }
+
+@media (max-width: 768px) {
+  .workspace.split {
+    flex-direction: column;
+  }
+  .workspace.split > * {
+    width: 100%;
+  }
+}

@@ -1,0 +1,36 @@
+.banner {
+  background-color: var(--cor-destaque);
+  color: #000;
+  padding: 0.5rem 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.875rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.botaoPrimario,
+.botaoSecundario {
+  padding: 0.25rem 0.75rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.botaoPrimario {
+  background-color: #000;
+  color: var(--cor-destaque);
+  border: none;
+}
+
+.botaoSecundario {
+  background: transparent;
+  color: #000;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
