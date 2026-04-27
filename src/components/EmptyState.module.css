@@ -14,6 +14,12 @@
     radial-gradient(circle at 52% 100%, rgba(34, 211, 238, 0.08), transparent 30rem), var(--cor-fundo);
 }
 
+/* MOBILE — AGORA O CONTAINER NÃO PINTA FUNDO */
+@media (max-width: 560px) {
+  .container {
+    background: transparent;
+  }
+}
 .container::before {
   content: '';
   position: absolute;

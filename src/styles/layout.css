@@ -1,7 +1,29 @@
+html,
+body,
 #root {
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
+  height: 100%;
+}
+
+/* Desktop padrão (não mexe) */
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+}
+
+/* MOBILE — FUNDO GLOBAL */
+@media (max-width: 560px) {
+  body {
+    background:
+      radial-gradient(circle at 50% 0%, rgba(139, 92, 246, 0.18), transparent 40%),
+      radial-gradient(circle at 50% 100%, rgba(37, 99, 235, 0.18), transparent 40%),
+      linear-gradient(180deg, #020617 0%, #020617 100%);
+
+    background-attachment: fixed;
+  }
+
+  #root {
+    background: transparent;
+  }
 }
 
 .workspace {
