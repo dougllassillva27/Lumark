@@ -8,8 +8,7 @@
   flex-shrink: 0;
 }
 
-.logo {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: var(--cor-texto);
+.espacador {
+  width: 1px;
+  height: 1px;
 }

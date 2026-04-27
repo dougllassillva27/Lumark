@@ -1,8 +1,9 @@
 import { useRef, useState } from 'react';
-import { FileUp, ClipboardPaste, MousePointer2 } from 'lucide-react';
+import { ClipboardPaste, FileText, FileUp, MousePointer2, Sparkles, Zap } from 'lucide-react';
 import { useDocumentoStore } from '../store/useDocumentoStore';
-import { lerArquivoTexto, criarDocumentoAPartirDeArquivo } from '../lib/arquivo';
+import { criarDocumentoAPartirDeArquivo, lerArquivoTexto } from '../lib/arquivo';
 import styles from './EmptyState.module.css';
+import imgBanner from '../assets/img/Lumark - banner.webp';
 
 function EmptyState() {
   const setDocumentoAtivo = useDocumentoStore((state) => state.setDocumentoAtivo);
@@ -18,46 +19,92 @@ function EmptyState() {
     setModalColarAberto(true);
   };
 
-  const onFileInput = async (e) => {
-    const arquivo = e.target.files[0];
+  const onFileInput = async (evento) => {
+    const arquivo = evento.target.files[0];
     if (!arquivo) return;
 
     setErro(null);
+
     try {
       const conteudo = await lerArquivoTexto(arquivo);
-      const doc = criarDocumentoAPartirDeArquivo({ nome: arquivo.name, conteudo, tamanho: arquivo.size });
-      setDocumentoAtivo(doc);
-    } catch (err) {
-      setErro(err.message);
+      const documento = criarDocumentoAPartirDeArquivo({
+        nome: arquivo.name,
+        conteudo,
+        tamanho: arquivo.size,
+      });
+
+      setDocumentoAtivo(documento);
+    } catch (erroCapturado) {
+      setErro(erroCapturado.message);
       setTimeout(() => setErro(null), 3000);
     }
-    e.target.value = '';
+
+    evento.target.value = '';
   };
 
   return (
     <div className={styles.container}>
       {erro && <div className={styles.erro}>{erro}</div>}
-      <div className={styles.conteudo}>
-        <h2 className={styles.titulo}>Leitor de Markdown e Texto</h2>
-        <p className={styles.subtitulo}>
-          Visualize arquivos .md, .txt e .json instantaneamente. Processamento 100% local e seguro no seu navegador.
-        </p>
-        <input type="file" accept=".md,.txt,.json" ref={inputRef} style={{ display: 'none' }} onChange={onFileInput} />
-        <div className={styles.opcoes}>
-          <div className={styles.opcao} onClick={abrirArquivo}>
-            <FileUp size={32} />
-            <span>Abrir arquivo</span>
+
+      <section className={styles.hero}>
+        <div className={styles.colunaTexto}>
+          <div className={styles.marca}>
+            <FileText size={42} />
+            <span>Lumark</span>
           </div>
-          <div className={styles.opcao} title="Apenas arraste para qualquer lugar da tela">
-            <MousePointer2 size={32} />
-            <span>Arrastar e soltar</span>
+
+          <h1 className={styles.titulo}>Leitura técnica sem distrações</h1>
+
+          <p className={styles.subtitulo}>
+            Abra, edite e visualize Markdown, JSON e texto com rapidez, clareza e foco total no conteúdo.
+          </p>
+
+          <input
+            type="file"
+            accept=".md,.txt,.json"
+            ref={inputRef}
+            className={styles.inputArquivo}
+            onChange={onFileInput}
+          />
+
+          <div className={styles.acoes}>
+            <button type="button" className={styles.botaoPrimario} onClick={abrirArquivo}>
+              <FileUp size={20} />
+              <span>Abrir arquivo</span>
+            </button>
+
+            <button type="button" className={styles.botaoSecundario} onClick={abrirModalColar}>
+              <ClipboardPaste size={20} />
+              <span>Colar texto</span>
+            </button>
           </div>
-          <div className={styles.opcao} onClick={abrirModalColar}>
-            <ClipboardPaste size={32} />
-            <span>Colar texto</span>
+
+          <div className={styles.dropzone} title="Arraste um arquivo para qualquer lugar da tela">
+            <MousePointer2 size={22} />
+            <span>Arraste e solte arquivos em qualquer lugar da tela</span>
+          </div>
+
+          <div className={styles.recursos}>
+            <div className={styles.recurso}>
+              <Zap size={18} />
+              <span>Rápido</span>
+            </div>
+
+            <div className={styles.recurso}>
+              <Sparkles size={18} />
+              <span>Foco no conteúdo</span>
+            </div>
           </div>
         </div>
-      </div>
+
+        <div className={styles.colunaPreview}>
+          <div className={styles.previewGlow}></div>
+
+          <div className={styles.previewCard}>
+            <img src={imgBanner} alt="Banner visual do Lumark" className={styles.banner} />
+          </div>
+        </div>
+      </section>
     </div>
   );
 }

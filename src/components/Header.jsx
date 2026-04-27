@@ -7,7 +7,7 @@ function Header() {
 
   return (
     <header className={styles.cabecalho}>
-      <div className={styles.logo}>Lumark</div>
+      <div className={styles.espacador}></div>
       {documentoAtivo && <ViewSwitcher />}
     </header>
   );

@@ -1,4 +1,5 @@
 <div align="center">
+  <img src="src/assets/img/Lumark%20-%20banner%20README.webp" alt="Lumark Banner" width="100%" />
   <h1>📖 Lumark</h1>
   <p>Leitor e visualizador de arquivos Markdown (.md), JSON (.json) e texto online. Rápido, seguro, 100% local e com modo leitura focado.</p>
 </div>
