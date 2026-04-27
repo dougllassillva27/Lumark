@@ -40,9 +40,9 @@ function EmptyState() {
       <div className={styles.conteudo}>
         <h2 className={styles.titulo}>Leitor de Markdown e Texto</h2>
         <p className={styles.subtitulo}>
-          Visualize arquivos .md e .txt instantaneamente. Processamento 100% local e seguro no seu navegador.
+          Visualize arquivos .md, .txt e .json instantaneamente. Processamento 100% local e seguro no seu navegador.
         </p>
-        <input type="file" accept=".md,.txt" ref={inputRef} style={{ display: 'none' }} onChange={onFileInput} />
+        <input type="file" accept=".md,.txt,.json" ref={inputRef} style={{ display: 'none' }} onChange={onFileInput} />
         <div className={styles.opcoes}>
           <div className={styles.opcao} onClick={abrirArquivo}>
             <FileUp size={32} />

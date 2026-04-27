@@ -21,6 +21,10 @@
   min-height: 0;
 }
 
+.workspace.leitura.modo-json > * {
+  max-width: 100%;
+}
+
 .workspace.edicao > * {
   width: 100%;
   flex: 1 1 0%;

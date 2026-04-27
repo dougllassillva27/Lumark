@@ -1,14 +1,15 @@
 <div align="center">
   <h1>📖 Lumark</h1>
-  <p>Leitor e visualizador de arquivos Markdown (.md) e texto online. Rápido, seguro, 100% local e com modo leitura focado.</p>
+  <p>Leitor e visualizador de arquivos Markdown (.md), JSON (.json) e texto online. Rápido, seguro, 100% local e com modo leitura focado.</p>
 </div>
 
 ---
 
 ## ✨ Funcionalidades (Features)
 
-- **Upload Simplificado:** Suporte a arquivos `.md` e `.txt` via Drag and Drop ou Seletor Nativo.
-- **Colagem Rápida:** Modal dedicado para colar textos diretamente da área de transferência.
+- **Upload Simplificado:** Suporte a arquivos `.md`, `.json` e `.txt` via Drag and Drop ou Seletor Nativo.
+- **Colagem Rápida:** Modal dedicado para colar textos com auto-detecção de formato (Markdown ou JSON).
+- **Suporte Avançado a JSON:** Syntax Highlighting via PrismJS, preenchimento total de tela e auto-formatação.
 - **Modos de Visualização Dinâmicos:**
   - 📖 **Leitura:** Foco total no texto renderizado.
   - 📝 **Edição:** Visualização do Markdown raw.
@@ -29,6 +30,7 @@ A aplicação foi construída com o paradigma **Local-First SPA** (Single Page A
 - **Core:** React 18 + Vite
 - **Gerenciador de Estado:** Zustand (com middleware `persist`)
 - **Segurança & Parse:** DOMPurify + markdown-it
+- **Syntax Highlighting:** PrismJS
 - **Ícones:** Lucide React
 - **Estilização:** CSS Nativo (Modular + Variáveis Globais)
 - **Build/DevOps:** Motor MD5 de Cache-busting nativo (`versionador.js`).
@@ -64,12 +66,17 @@ _Nota: O Vite está configurado com `base: './'` e inclui `.htaccess` na pasta p
 ## 📂 Estrutura do Código
 
 ```text
+public/
+└── .htaccess          # Regras de roteamento Apache (Fallback SPA)
 src/
+├── assets/            # Imagens e recursos visuais estáticos
 ├── components/        # Componentes UI (React) e CSS Modules isolados
 ├── hooks/             # Custom hooks (Ex: useAtalhos)
 ├── lib/               # Regras de negócio puras e utilitários
 │   ├── arquivo.js     # I/O e leitura de blobs
+│   ├── clipboard.js   # Acesso à área de transferência
 │   ├── exportacao.js  # Conversão de MD para doc HTML auto-suficiente
+│   ├── json.js        # Validador e formatador de payloads
 │   ├── markdown.js    # Instância do markdown-it
 │   ├── sanitizacao.js # Firewall do DOMPurify
 │   └── validacao.js   # Controle de limite de peso (2MB) e extensão

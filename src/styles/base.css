@@ -35,3 +35,11 @@ button {
 ::-webkit-scrollbar-thumb:hover {
   background: var(--cor-texto-suave);
 }
+
+/* Limpeza de fundo cinza do PrismJS para integrar com AMOLED */
+code[class*='language-'],
+pre[class*='language-'] {
+  background: transparent !important;
+  white-space: pre-wrap !important;
+  word-break: break-word !important;
+}

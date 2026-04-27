@@ -12,8 +12,15 @@ function PasteModal() {
 
   const handleConfirmar = () => {
     if (!texto.trim()) return;
+
+    let nomeSugerido = 'Documento colado.md';
+    try {
+      JSON.parse(texto);
+      nomeSugerido = 'Documento colado.json';
+    } catch (e) {}
+
     setDocumentoAtivo({
-      nome: 'Documento sem título',
+      nome: nomeSugerido,
       origem: 'colar',
       conteudo: texto,
       tamanho: new Blob([texto]).size,
@@ -34,7 +41,7 @@ function PasteModal() {
         <h2 className={styles.titulo}>Colar Texto</h2>
         <textarea
           className={styles.textarea}
-          placeholder="Cole seu conteúdo Markdown aqui..."
+          placeholder="Cole seu conteúdo Markdown ou JSON aqui..."
           value={texto}
           onChange={(e) => setTexto(e.target.value)}
           autoFocus

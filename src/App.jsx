@@ -14,13 +14,15 @@ function App() {
 
   useAtalhos();
 
+  const ehJson = documentoAtivo?.nome?.toLowerCase().endsWith('.json');
+
   return (
     <Layout>
       <FileDropzone>
         {!documentoAtivo ? (
           <EmptyState />
         ) : (
-          <div className={`workspace ${modo}`}>
+          <div className={`workspace ${modo} ${ehJson ? 'modo-json' : ''}`}>
             {(modo === 'edicao' || modo === 'split') && <EditorPane />}
             {(modo === 'leitura' || modo === 'split') && <PreviewPane />}
           </div>
