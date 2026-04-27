@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { lerArquivoTexto, criarDocumentoAPartirDeArquivo } from '../lib/arquivo';
 import { useDocumentoStore } from '../store/useDocumentoStore';
 import styles from './FileDropzone.module.css';
@@ -7,18 +7,41 @@ function FileDropzone({ children }) {
   const [arrastando, setArrastando] = useState(false);
   const [erro, setErro] = useState(null);
   const setDocumentoAtivo = useDocumentoStore((state) => state.setDocumentoAtivo);
+  const dragCounter = useRef(0);
+
+  useEffect(() => {
+    const bloquearComportamentoPadrao = (e) => e.preventDefault();
+    window.addEventListener('dragover', bloquearComportamentoPadrao);
+    window.addEventListener('drop', bloquearComportamentoPadrao);
+    return () => {
+      window.removeEventListener('dragover', bloquearComportamentoPadrao);
+      window.removeEventListener('drop', bloquearComportamentoPadrao);
+    };
+  }, []);
+
+  const onDragEnter = (e) => {
+    e.preventDefault();
+    dragCounter.current += 1;
+    if (e.dataTransfer.items && e.dataTransfer.items.length > 0) {
+      setArrastando(true);
+    }
+  };
+
+  const onDragLeave = (e) => {
+    e.preventDefault();
+    dragCounter.current -= 1;
+    if (dragCounter.current === 0) {
+      setArrastando(false);
+    }
+  };
 
   const onDragOver = (e) => {
     e.preventDefault();
-    setArrastando(true);
-  };
-
-  const onDragLeave = () => {
-    setArrastando(false);
   };
 
   const onDrop = async (e) => {
     e.preventDefault();
+    dragCounter.current = 0;
     setArrastando(false);
     setErro(null);
 
@@ -38,6 +61,7 @@ function FileDropzone({ children }) {
   return (
     <div
       className={`${styles.dropzone} ${arrastando ? styles.ativo : ''}`}
+      onDragEnter={onDragEnter}
       onDragOver={onDragOver}
       onDragLeave={onDragLeave}
       onDrop={onDrop}
