@@ -48,9 +48,10 @@ O foco do projeto é entregar uma experiência de leitura técnica limpa, rápid
 
 ## 🔗 Demo
 
-A URL pública configurada nas metas Open Graph do projeto é:
+- **Produção (VPS Docker):** https://lumark.dougllassillva.com.br
+- **Legado Netlify:** https://getlumark.netlify.app
 
-👉 `https://dougllassillva.com.br/lumark/`
+A URL de produção é `https://lumark.dougllassillva.com.br` (Open Graph em `index.html` ainda aponta pra URL legada do Netlify — atualização pendente).
 
 ---
 
@@ -393,18 +394,23 @@ Regras do projeto:
 
 ---
 
-## 🧭 Deploy em subpasta Apache
+## 🧭 Deploy
 
-O projeto está preparado para deploy em subpasta por usar:
+### Produção (VPS Docker — atual)
 
-```js
-export default defineConfig({
-  base: './',
-  plugins: [react()],
-});
+Container `lumark-web`: build multi-stage (Node 20 builda o dist, nginx 1.27 alpine serve). Publicado apenas em `127.0.0.1:8301`; nginx host faz proxy de `lumark.dougllassillva.com.br` com Let's Encrypt e Cloudflare proxied.
+
+```bash
+cd /root/dodo/aplicacoes/lumark
+git pull
+docker compose up -d --build
 ```
 
-Também existe `public/.htaccess` com fallback para `index.html`, útil para SPA em Apache.
+Formato Dockerfile: mantém `base: './'` do Vite, funciona no container raiz `/`.
+
+### Legado (subpasta Apache / Netlify)
+
+O projeto é preparado para deploy em subpasta por usar `base: './'`. Existe `public/.htaccess` com fallback para `index.html`, útil para SPA em Apache. O deploy Netlify original (`getlumark.netlify.app`) está em descontinuação.
 
 Para gerar o build:
 
@@ -414,23 +420,15 @@ npm run build
 
 Depois, publique o conteúdo de `dist/` no destino desejado do servidor.
 
-Exemplo compatível com as metas atuais:
-
-```text
-https://dougllassillva.com.br/lumark/
-```
-
 ---
 
 ## 🧪 Testes e validação
 
-O projeto possui script de teste configurado:
-
 ```bash
-npm run test
+npm run test        # 15/15 passando em 3 suítes (vitest --run)
 ```
 
-O anexo do projeto informa `has_tests: false`, então não foram detectados arquivos de teste no pacote analisado.
+Suítes: `__tests__/validacao.test.js` (7), `sanitizacao.test.js` (4), `markdown.test.js` (4).
 
 Validações recomendadas antes de publicar:
 
@@ -462,8 +460,6 @@ Checklist manual mínimo:
 - Não há banco de dados.
 - Não há autenticação.
 - Não há sincronização entre dispositivos.
-- Não foram detectados arquivos de teste no anexo analisado.
-- A licença do projeto não foi identificada no pacote analisado.
 
 ---
 
