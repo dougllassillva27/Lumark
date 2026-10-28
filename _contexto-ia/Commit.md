@@ -1,8 +1,18 @@
-feat(deploy): adiciona deploy docker na vps (nginx alpine)
+fix(security): contem HTML injection no preview
 
-Container lumark-web multi-stage (Node 20 builda o dist, nginx 1.27
-alpine serve com fallback SPA em nginx-spa.conf), publicado so em
-127.0.0.1:8301. README atualizado: URL de producao lumark.dougllassillva.com.br,
-secao Deploy reescrita (Docker atual + legado Apache/Netlify), testes
-corrigidos (15/15 em 3 suites, has_tests false estava errado) e
-limitacoes de testes/licenca removidas.
+Achados da auditoria (run-1 sobre d69f168). O markdown era renderizado com
+html: true e sanitizado por DOMPurify sem FORBID_TAGS/FORBID_ATTR, entao
+<form action>, <input>, <button> e style="position:fixed;inset:0"
+sobreviviam - formulario e overlay falsos dentro do app, plausiveis o
+bastante para roubar digitacao.
+
+sanitizacao.js proibe tags de formulario/controle (form, input, button,
+select, option, textarea, label, style, link, meta) e atributos style,
+action, formaction, method e target.
+
+exportacao.js: o nome do documento entrava cru no <title> do HTML
+exportado, permitindo fechar a tag e injetar script no arquivo que o
+usuario abre depois. Agora passa por escaparHtml.
+
+Testes: 21/21 em 4 suites (sanitizacao 7, exportacao 3 novas, validacao 7,
+markdown 4). Revalidacao em run-2 (2 unidades covered, 0 findings).
